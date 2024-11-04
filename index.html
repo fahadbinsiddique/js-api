@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f8f8;
+            margin: 20px;
+            margin-left: 50px;
+        }
+
+        #card {
+            /* border: 2px solid rgb(90, 33, 33); */
+            height: 400px;
+            width: 400px;
+            margin: 20px;
+            margin-left: 30px;
+            display: inline-block;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        #card h2 {
+            font-size: 18px;
+            color: #333;
+            padding: 10px;
+            margin: 0;
+            background-color: #f0f0f8;
+        }
+
+        #card img {
+            width: 70%;
+            height: 70%;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #card h6 {
+            font-size: 16px;
+            color: #27ae60;
+            margin: 10px 0;
+        }
+
+        #card p {
+            font-size: 14px;
+            color: #666;
+            padding-bottom: 10px;
+        }
+
+        #card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="img"></h1>
+
+    <script>
+        let img = document.getElementById('img')
+
+        fetch('https://dummyjson.com/products')
+            .then(res => res.json())
+            .then(data => {
+                data.products.map(item => {
+
+                    img.innerHTML += `<div id="card">
+                        <img src=${item.thumbnail}> 
+                        <h2>${item.title}</h2> 
+                        <h6>$${item.price}</h6> 
+                        <p>In Stock: ${item.stock}</p>
+                        </div>`
+                })
+            })
+
+
+    </script>
+</body>
+
+</html>
